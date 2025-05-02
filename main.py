@@ -13,6 +13,13 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 import requests
 
+classifier = pipeline(
+    "text-classification",
+    model="GhazalHelal/Roberta",
+    tokenizer="GhazalHelal/Roberta",
+    return_all_scores=True
+)
+
 
 HF_MODEL_URL = "https://huggingface.co/GhazalHelal/Roberta/resolve/main/Roberta_model.zip"
 
