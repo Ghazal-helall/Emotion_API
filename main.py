@@ -10,6 +10,19 @@ Original file is located at
 from fastapi import FastAPI, Request
 from transformers import pipeline
 from fastapi.middleware.cors import CORSMiddleware
+import os
+import requests
+
+
+HF_MODEL_URL = "https://huggingface.co/GhazalHelal/Roberta/resolve/main/Roberta_model.zip"
+
+# Download the model zip if not already present
+HF_MODEL_URL = os.getenv("HF_MODEL_URL")
+if HF_MODEL_URL and not os.path.exists("Roberta_model.zip"):
+    with open("Roberta_model.zip", "wb") as f:
+        f.write(requests.get(HF_MODEL_URL).content)
+
+
 
 app = FastAPI()
 
